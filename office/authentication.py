@@ -19,6 +19,7 @@ class SafeJWTAuthentication(BaseAuthentication):
 
         if not authorization_header:
             return None
+
         try:
             access_token = authorization_header.split(' ')[1]
             payload = jwt.decode(
@@ -26,10 +27,12 @@ class SafeJWTAuthentication(BaseAuthentication):
 
         except jwt.ExpiredSignatureError:
             raise exceptions.AuthenticationFailed('access_token expired')
+
         except IndexError:
             raise exceptions.AuthenticationFailed('Token prefix missing')
 
         user = User.objects.filter(id=payload['user_id']).first()
+
         if user is None:
             raise exceptions.AuthenticationFailed('User not found')
 
@@ -37,13 +40,22 @@ class SafeJWTAuthentication(BaseAuthentication):
             raise exceptions.AuthenticationFailed('user is inactive')
 
         self.enforce_csrf(request)
+
         return user, None
 
     @staticmethod
     def enforce_csrf(request):
         check = CSRFCheck()
         check.process_request(request)
-        reason = check.process_view(request, None, (), {})
+
+        reason = check.process_view(
+            request,
+            None,
+            (),
+            {}
+        )
+
         print(reason)
+
         if reason:
             raise exceptions.PermissionDenied('CSRF Failed: %s' % reason)
