@@ -4,8 +4,11 @@ from rest_framework.routers import DefaultRouter
 
 from office import views
 
+router = DefaultRouter()
+router.register('table', views.TableViewSet, basename='table')
+
 urlpatterns = [
-    url('login/', views.login_view, name='login'),
+    url('table/', include(router.urls)),
+    url('access/', views.access_token_view, name='access'),
     url('refresh/', views.refresh_token_view, name='refresh'),
-    url('api-auth/', include('rest_framework.urls', namespace='rest_employment'))
 ]
