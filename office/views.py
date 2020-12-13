@@ -1,6 +1,6 @@
 import jwt
 from django.contrib.auth import get_user_model
-from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_protect, csrf_exempt
 from rest_framework import exceptions, viewsets
 from rest_framework.decorators import permission_classes, api_view
 from rest_framework.permissions import AllowAny
@@ -23,9 +23,9 @@ class TableViewSet(viewsets.ModelViewSet):
     def get_permissions(self):
         permission_class = []
         if self.action == 'create':
-            permission_class = [ROLE_ADMIN]
-        elif self.action == 'list':
             permission_class = [ROLE_USER]
+        elif self.action == 'list':
+            permission_class = [ROLE_ADMIN]
         elif self.action == 'retrieve' or self.action == 'update' or self.action == 'partial_update':
             permission_class = [ROLE_ADMIN]
         elif self.action == 'destroy':
@@ -35,7 +35,6 @@ class TableViewSet(viewsets.ModelViewSet):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@ensure_csrf_cookie
 def access_token_view(request):
     User = get_user_model()
     username = request.data.get('username')
@@ -69,7 +68,6 @@ def access_token_view(request):
 
 @api_view(['POST'])
 @permission_classes([AllowAny])
-@csrf_protect
 def refresh_token_view(request):
     User = get_user_model()
     refresh_token = request.COOKIES.get('refresh_token')
