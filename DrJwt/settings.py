@@ -6,7 +6,7 @@ SECRET_KEY = 'zs9k24nwqg^2c4=t!8s8#74wk9$_ou%c@9%2uhf$+9p1m4#t1('
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://drjwt.herokuapp.com/']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -84,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'DrJwt',
         'USER': 'postgres',
-        'PASSWORD': 'password',
+        'PASSWORD': '4466567693441',
         'HOST': '127.0.0.1',
         'PORT': '5432',
 
