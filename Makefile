@@ -1,5 +1,11 @@
-migrate:
-	python manage.py makemigrations & python manage.py migrate
+makemigrate_api:
+	python manage.py makemigrations office
+
+migrate_api:
+	python manage.py migrate office --database=default
+
+all_migrate_api:
+	python manage.py migrate --database=default
 
 run:
 	python manage.py runserver
@@ -8,7 +14,7 @@ createsuperuser:
 	python manage.py createsuperuser
 
 install:
-	pip install -r reqs\dev.txt
+	pip install -r requirements.txt
 
 freeze:
-	pip freeze > reqs\dev.txt
+	pip freeze > requirements.txt
