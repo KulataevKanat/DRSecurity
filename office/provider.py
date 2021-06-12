@@ -8,7 +8,7 @@ def generate_access_token(user):
         'user_id': user.id,
         'username': user.username,
         'role': user.groups.name,
-        'exp': datetime.datetime.utcnow() + datetime.timedelta(days=0, minutes=5),
+        'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=5),
         'iat': datetime.datetime.utcnow(),
     }
 
