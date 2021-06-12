@@ -103,10 +103,10 @@ WSGI_APPLICATION = 'DrJwt.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'DrJwt',
-        'USER': 'postgres',
-        'PASSWORD': '4466567693441',
-        'HOST': '127.0.0.1',
+        'NAME': 'd3ofg5daqf9367',
+        'USER': 'iybjnioobhcskk',
+        'PASSWORD': 'f10e7829c56e0e5e8b7e9fdd7f370aaa69c35dc9c1d797e34f977ae0d8d7b2d3',
+        'HOST': 'ec2-54-216-185-51.eu-west-1.compute.amazonaws.com',
         'PORT': '5432',
 
         'applications': [
