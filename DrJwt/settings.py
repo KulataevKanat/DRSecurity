@@ -6,7 +6,7 @@ SECRET_KEY = 'zs9k24nwqg^2c4=t!8s8#74wk9$_ou%c@9%2uhf$+9p1m4#t1('
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['https://drjwt.herokuapp.com/']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'drforflutter.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,9 +16,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'djoser',
-    'gunicorn',
     'office',
+    'drf_yasg',
+    'corsheaders',
 ]
 
 REST_FRAMEWORK = {
@@ -28,6 +28,21 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
+}
+
+CORS_ALLOW_ALL_ORIGINS = True
+
+SWAGGER_SETTINGS = {
+    'DOC_EXPANSION': "none",
+    'OPERATIONS_SORTER': "method",
+    'PERSIST_AUTH': True,  # for testing
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'HEADER.PAYLOAD.VERIFY_SIGNATURE'
+        }
+    }
 }
 
 PASSWORD_HASHERS = [
@@ -47,6 +62,12 @@ REFRESH_TOKEN_SECRET = 'qwertyuiop[];lkjhhgfdsaZXCVBNM,./'
 
 AUTH_USER_MODEL = 'office.User'
 
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_VERIFY': True,
+    'JWT_VERIFY_EXPIRATION': True,
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -56,7 +77,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
 ROOT_URLCONF = 'DrJwt.urls'
@@ -119,5 +140,7 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
