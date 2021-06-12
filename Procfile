@@ -1,1 +1,1 @@
-web: gunicorn DrJwt.wsgi --pythonpath=DrJwt --log-file -
+web: gunicorn DrJwt.wsgi --log-file -
