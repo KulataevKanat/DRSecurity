@@ -39,7 +39,7 @@ urlpatterns = [
     # GROUPS
     path("group/create_group/",
          authentication_classes([SafeJWTAuthentication])(
-             permission_classes([AllowAny])(GroupViews.CreateGroupView)).as_view()),
+             permission_classes([ROLE_ADMIN])(GroupViews.CreateGroupView)).as_view()),
     path("group/delete_group_by_id/<int:pk>/",
          authentication_classes([SafeJWTAuthentication])(
              permission_classes([ROLE_ADMIN])(GroupViews.DeleteGroupByIdView)).as_view()),
