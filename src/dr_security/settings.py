@@ -1,12 +1,14 @@
+import json
 import os
+from pathlib import Path
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'zs9k24nwqg^2c4=t!8s8#74wk9$_ou%c@9%2uhf$+9p1m4#t1('
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'drjwt.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'drsecurity.herokuapp.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -16,14 +18,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'office',
+    'api',
     'drf_yasg',
     'corsheaders',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'office.authentication.SafeJWTAuthentication',
+        'api.authentication.SafeJWTAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
@@ -60,7 +62,7 @@ PASSWORD_HASHERS = [
 
 REFRESH_TOKEN_SECRET = 'qwertyuiop[];lkjhhgfdsaZXCVBNM,./'
 
-AUTH_USER_MODEL = 'office.User'
+AUTH_USER_MODEL = 'api.User'
 
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
@@ -80,7 +82,7 @@ MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware'
 ]
 
-ROOT_URLCONF = 'DrJwt.urls'
+ROOT_URLCONF = 'dr_security.urls'
 
 TEMPLATES = [
     {
@@ -98,19 +100,23 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'DrJwt.wsgi.application'
+WSGI_APPLICATION = 'dr_security.wsgi.application'
+
+with open(BASE_DIR / "pg_config.json") as config_file:
+    config = json.load(config_file)
 
 DATABASES = {
+
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd3ofg5daqf9367',
-        'USER': 'iybjnioobhcskk',
-        'PASSWORD': 'f10e7829c56e0e5e8b7e9fdd7f370aaa69c35dc9c1d797e34f977ae0d8d7b2d3',
-        'HOST': 'ec2-54-216-185-51.eu-west-1.compute.amazonaws.com',
-        'PORT': '5432',
+        'NAME': config["POSTGRES_DB"],
+        'USER': config["POSTGRES_USER"],
+        'PASSWORD': config["POSTGRES_PASSWORD"],
+        'HOST': config["POSTGRES_HOST"],
+        'PORT': config["POSTGRES_PORT"],
 
         'applications': [
-            'office',  # все модели в office
+            'api',  # все модели в api
         ],
 
     },
@@ -131,7 +137,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'en-US'  # english django language
+# LANGUAGE_CODE = 'ru-RU' # russian django language
 
 TIME_ZONE = 'UTC'
 
@@ -139,8 +146,10 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
