@@ -4,7 +4,7 @@ from rest_framework import exceptions
 from django.conf import settings
 from django.contrib.auth import get_user_model
 
-from DrJwt.advice import ACCESS_TOKEN_EXPIRED, TOKEN_PREFIX, USER_NOT_FOUND, USER_DETAIL, USER_NOT_ACTIVE
+from dr_security.advice import ACCESS_TOKEN_EXPIRED, TOKEN_PREFIX, USER_NOT_FOUND, USER_DETAIL, USER_NOT_ACTIVE
 
 
 class SafeJWTAuthentication(BaseAuthentication):

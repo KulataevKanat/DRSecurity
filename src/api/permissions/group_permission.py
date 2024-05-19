@@ -4,7 +4,7 @@ import django
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'DrJwt.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dr_security.settings')
 
 django.setup()
 
