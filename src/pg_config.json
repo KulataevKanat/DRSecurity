@@ -1,0 +1,7 @@
+{
+  "POSTGRES_DB": "d3ofg5daqf9367",
+  "POSTGRES_USER": "iybjnioobhcskk",
+  "POSTGRES_PASSWORD": "f10e7829c56e0e5e8b7e9fdd7f370aaa69c35dc9c1d797e34f977ae0d8d7b2d3",
+  "POSTGRES_HOST": "ec2-54-216-185-51.eu-west-1.compute.amazonaws.com",
+  "POSTGRES_PORT": "5432"
+}
