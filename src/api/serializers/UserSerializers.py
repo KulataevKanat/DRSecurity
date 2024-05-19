@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
-from office.models import User
-from office.service import WritableSerializerMethodField
+from api.models import User
+from api.service import WritableSerializerMethodField
 
 
 class GetUserSerializer(serializers.ModelSerializer):

@@ -5,14 +5,14 @@ from rest_framework import exceptions, generics, status
 from rest_framework.response import Response
 from django.contrib.auth.hashers import make_password as encode
 from django.contrib.auth.hashers import check_password as check
-from DrJwt.advice import USER_DETAIL, USER_NOT_FOUND, WRONG_PASSWORD, ACCESS_TOKEN_DETAIL, USER_BLOCKED, \
+from dr_security.advice import USER_DETAIL, USER_NOT_FOUND, WRONG_PASSWORD, ACCESS_TOKEN_DETAIL, USER_BLOCKED, \
     REFRESH_TOKEN_EXPIRED, AUTH_CREDENTIALS, DATA_DETAIL, WRONG_OLD_PASSWORD, WRONG_ACTIVE_OLD_PASSWORD
-from office import service
-from office.models import User as Users
-from DrJwt import settings
-from office.provider import generate_access_token, generate_refresh_token
-from office.serializers import UserSerializers
-from office.serializers.SpareSerializers import NotSerializer
+from api import service
+from api.models import User as Users
+from dr_security import settings
+from api.provider import generate_access_token, generate_refresh_token
+from api.serializers import UserSerializers
+from api.serializers.SpareSerializers import NotSerializer
 
 
 class AccessToken(generics.CreateAPIView):

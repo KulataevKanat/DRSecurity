@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from office.models import Table
+from api.models import Table
 
 
 class AllTableSerializer(serializers.ModelSerializer):

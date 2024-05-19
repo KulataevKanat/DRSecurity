@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from office.models import Table
-from office.serializers import TableSerializers
+from api.models import Table
+from api.serializers import TableSerializers
 
 
 class CreateTableView(generics.CreateAPIView):

@@ -2,9 +2,9 @@ from django.urls import path
 from rest_framework.decorators import permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny
 
-from office.authentication import SafeJWTAuthentication
-from office.permissions.permission import ROLE_ADMIN, UserPermissionsObj, ROLE_USER
-from office.views import UserViews, GroupViews, TableViews
+from api.authentication import SafeJWTAuthentication
+from api.permissions.permission import ROLE_ADMIN, UserPermissionsObj, ROLE_USER
+from api.views import UserViews, GroupViews, TableViews
 
 urlpatterns = [
     # USERS

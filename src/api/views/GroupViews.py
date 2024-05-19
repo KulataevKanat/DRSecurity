@@ -1,7 +1,7 @@
 from django.contrib.auth.models import Group
 from rest_framework import generics
 
-from office.serializers import GroupSerializers
+from api.serializers import GroupSerializers
 
 
 class CreateGroupView(generics.CreateAPIView):
