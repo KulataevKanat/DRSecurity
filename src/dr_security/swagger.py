@@ -5,9 +5,9 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Rest API JWT",
-        default_version='v3.0',
-        description="Django Rest Json Web Token Security",
+        title="Rest API Security",
+        default_version='v4.0',
+        description="Django Rest Security",
         license=openapi.License(name="Enot License"),
     ),
     public=True,
