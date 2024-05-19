@@ -1,12 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser, Group
 from django.utils.translation import gettext_lazy as _
-from DrJwt.models import BaseModel
-from office.managers import UserAccountManager
+from dr_security.models import BaseModel
+from api.managers import UserAccountManager
 
 
 class User(BaseModel, AbstractUser):
-    id = models.AutoField(primary_key=True)
     groups = models.ForeignKey(Group, on_delete=models.CASCADE, default=1)
     email = models.EmailField(max_length=50, unique=True)
 
@@ -27,7 +26,6 @@ class User(BaseModel, AbstractUser):
 
 
 class Table(BaseModel):
-    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
