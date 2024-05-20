@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    container_name: db_dr_security
+    volumes:
+      - db_dr_security_vol:/var/lib/postgresql/data
+    env_file:
+      - .env.dev
+    ports:
+      - "5432:5432"
+  web:
+    build: .
+    container_name: db_security
+    command: >
+      sh - c "
+      python manage.py makemigrations --noinput &&
+      python manage.oy migrate &&
+      python manage.oy runserver 0.0.0.0:8000"
+    volumes:
+      - ./:/dr_security
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    env_file:
+      - .env.dev
+
+volumes:
+  db_dr_security_vol:
+
