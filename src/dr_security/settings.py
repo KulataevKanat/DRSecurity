@@ -6,9 +6,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'zs9k24nwqg^2c4=t!8s8#74wk9$_ou%c@9%2uhf$+9p1m4#t1('
 
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', True)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'drsecurity.herokuapp.com']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', '127.0.0.1').split(' ')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -18,9 +18,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api',
     'drf_yasg',
     'corsheaders',
+
+    'api',
+
 ]
 
 REST_FRAMEWORK = {
